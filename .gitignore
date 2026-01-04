@@ -1,0 +1,8 @@
+# Executables and Outputs
+*.exe
+*.out
+*.o
+*.d
+
+# Editor directories
+.vscode/
