@@ -1,0 +1,17 @@
+#pragma once
+#include <iostream>
+using std::string;
+
+class Ship
+{
+private:
+  string name;
+  int size;
+  int hitsTaken;
+
+public:
+  Ship(string &Name, int shipSize) : name(Name), size(shipSize) ,hitsTaken(0) {}  
+  virtual ~Ship();
+  virtual void takeHit();
+  inline bool isSunk() const {return  hitsTaken >= size;}
+};
