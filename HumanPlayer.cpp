@@ -52,6 +52,9 @@ void HumanPlayer::placeAllShips()
         else
         {
             getGrid().placeShip(row, col, getShip(i)->getSize(), horizontal);
+            getShip(i)->setRowStart(row);
+            getShip(i)->setColStart(col);
+            getShip(i)->setIsHorizontal(horizontal);
         }
         i++;
     }
@@ -69,6 +72,6 @@ void HumanPlayer::makeMove(Player *opponent)
     }
     if (opponent->getGrid().getCell(row, col) == 'S')
     {
-        opponent->getGrid().findShipInGrid(row, col).takeHit();
+        opponent->findShipInGrid(row, col)->takeHit();
     }
 }
