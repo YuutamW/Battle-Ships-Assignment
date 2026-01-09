@@ -97,7 +97,7 @@ void Grid::shipPlacementIndex(int row, int col, int &endPoint, bool horizontal ,
 
 }
 
-void Grid::placeShip(int row, int col, int shipSize, bool horizontal)
+void Grid::placeShip(int row, int col, int shipSize, bool horizontal, char symbol = 'S')
 {
     if(numOfShipsOnGrid >= MAXSHIPSALLOWED)
     {
@@ -111,14 +111,14 @@ void Grid::placeShip(int row, int col, int shipSize, bool horizontal)
             int start  = std::min(col, endpoint);
             int end = std::max(col, endpoint);
             for(int c = start; c <= endpoint; c++)
-                cells[row][c] = 'S';
+                cells[row][c] = symbol;
         }
         else
         {
             int start  = std::min(row, endpoint);
             int end = std::max(row, endpoint);
             for(int r = start; r <= endpoint; r++)
-                cells[r][col] = 'S';
+                cells[r][col] = symbol;
         }
         numOfShipsOnGrid++;
 }
