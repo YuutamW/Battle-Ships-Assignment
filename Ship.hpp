@@ -12,6 +12,6 @@ private:
 public:
   Ship(string &Name, int shipSize) : name(Name), size(shipSize) ,hitsTaken(0) {}  
   virtual ~Ship();
-  virtual void takeHit();
+  virtual void takeHit() {hitsTaken++;};
   inline bool isSunk() const {return  hitsTaken >= size;}
 };
