@@ -119,6 +119,7 @@ void Grid::placeShip(int row, int col, int shipSize, bool horizontal, char symbo
             int end = std::max(row, endpoint);
             for(int r = start; r <= endpoint; r++)
                 cells[r][col] = symbol;
+            
         }
         numOfShipsOnGrid++;
 }

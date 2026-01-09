@@ -8,7 +8,9 @@ private:
   string name;
   int size;
   int hitsTaken;
-  
+  int row_start;
+  int col_start;
+  bool horizontal;
 public:
   Ship(const string &Name, int shipSize) : name(Name), size(shipSize), hitsTaken(0) {}
   virtual ~Ship() = 0;
@@ -21,4 +23,7 @@ public:
 
   inline int getSize() { return size; };
   inline string getName() { return name; }
+  inline int getRowStart() {return row_start;}
+  inline int getColStart() {return col_start;}
+  inline bool isHorizontal() {return horizontal;}
 };
