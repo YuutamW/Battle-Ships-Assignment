@@ -4,7 +4,7 @@
 class Carrier :  public Ship
 { 
 public:
-  Carrier(string &Name) : Ship(Name,5) {}
-  ~Carrier();
+  Carrier(const string &Name = "Carrier") : Ship(Name,5) {}
+  ~Carrier() {}
 };
 

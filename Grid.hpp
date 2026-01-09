@@ -6,18 +6,18 @@
 class Grid
 {
 private:
-  char cells[BOARDSIZE][BOARDSIZE] = {'~'};
+  char cells[BOARDSIZE][BOARDSIZE];
   int numOfShipsOnGrid;
-  void shipPlacementIndex(int& startPoint, int& endPoint , bool horizontal) const;
+  void shipPlacementIndex(int row, int col, int &endPoint, bool horizontal , int shipSize) const;
 public:
-  Grid() : numOfShipsOnGrid(0) {}
+  Grid() : numOfShipsOnGrid(0) , cells({'~'}) {}
   ~Grid();
 
   inline bool isTileOccupied(int row, int col) const {return VALIDGRIDINP(row,col)? (cells[row][col] == 'S' || cells[row][col] == 'X'): false ;  }
 
   bool inBounds(int row , int col, int shipSize, bool horizontal) const;
 
-  void placeShip(int row, int col, int shipSize, bool horizontal);
+  void placeShip(int row, int col, int shipSize, bool horizontal, char symbol = 'S');
 
   inline void markHit(int row, int col) {if(VALIDGRIDINP(row,col)) cells[row][col] = 'X'; }
 
