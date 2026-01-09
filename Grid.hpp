@@ -8,7 +8,7 @@ class Grid
 private:
   char cells[BOARDSIZE][BOARDSIZE];
   int numOfShipsOnGrid;
-  void shipPlacementIndex(int& startPoint, int& endPoint , bool horizontal) const;
+  void shipPlacementIndex(int row, int col, int &endPoint, bool horizontal , int shipSize) const;
 public:
   Grid() : numOfShipsOnGrid(0) , cells({'~'}) {}
   ~Grid();
