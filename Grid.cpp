@@ -42,6 +42,7 @@ void Grid::shipPlacementIndex(int row, int col, int &endPoint, bool horizontal ,
     if(horizontal)
     {
         int c = col;
+        //we try to add ship to grid from col to col + i. if col +i = 'S' we break and try other way
         while (c < BOARDSIZE && tilesFound < shipSize)
         {
            if(cells[row][c] == 'S') break;
@@ -49,11 +50,11 @@ void Grid::shipPlacementIndex(int row, int col, int &endPoint, bool horizontal ,
            endPoint = c;
            c++; 
         }
-        if(tilesFound < shipSize)
+        if(tilesFound < shipSize)   //here we tried to go right on the grid but ddint work, so we go left
         {
             c = col;
             tilesFound = 0;
-            while (c >= 0 && tilesFound < shipSize)
+            while (c >= 0 && tilesFound < shipSize) //going left if we see 'S' break, if out of bounds throw.
             {
                 if(c < 0) throw std::out_of_range("Ship cannot be placed here out of grid Bounds!!");
                 else
@@ -66,7 +67,7 @@ void Grid::shipPlacementIndex(int row, int col, int &endPoint, bool horizontal ,
             }
         }
     }
-    else
+    else        //same thing but for vertical
     {
         int r = row;
         while(r < BOARDSIZE && tilesFound < shipSize)
@@ -93,6 +94,7 @@ void Grid::shipPlacementIndex(int row, int col, int &endPoint, bool horizontal ,
             }
         }
     }
+    //this is where all the breaks lead to, meaning we tried to place between two ships.
     if(tilesFound < shipSize) throw std::out_of_range("Ship cannot be placed here, overlapping other ships!");
 
 }
@@ -105,6 +107,7 @@ void Grid::placeShip(int row, int col, int shipSize, bool horizontal, char symbo
         return;
     }
         int endpoint = 0;
+        //ship placement index throws an out_of_bounds exception
         shipPlacementIndex(row,col,endpoint,horizontal,shipSize);
         if(horizontal)
         {

@@ -13,6 +13,7 @@ private:
   bool horizontal;
 public:
   Ship(const string &Name, int shipSize) : name(Name), size(shipSize), hitsTaken(0) {}
+  
   virtual ~Ship() = 0;
   virtual void takeHit()
   {
@@ -29,4 +30,11 @@ public:
   inline void setRoStart(int r) {this->row_start = r;}
   inline void setColStart(int c) {this->col_start = c;}
   inline void setHor(bool horizon) {this->horizontal = horizon;}
+  inline bool covers(int r , int c) const {
+    if(isHorizontal)
+      return ((r == row_start) && (c >= col_start) && (c < col_start + size));
+    else
+      return ((c == col_start) && (r>=row_start) && (r < row_start + size));
+  }
+
 };

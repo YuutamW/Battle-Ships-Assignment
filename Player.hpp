@@ -26,4 +26,5 @@ public:
     inline Ship *getShip(int index) { return ships[index]; }
     inline Grid getGrid() { return grid; }
     inline int numOfShipsAlive() { return numOfShipsAlive; }
+    bool recievAttack(int row, int col);
 };
