@@ -9,6 +9,7 @@ class Player
 private:
     string playerName;
     Ship *ships[SHIPSAMOUNT];
+protected:
     Grid grid;
     int numOfShipsAlive = SHIPSAMOUNT;
 

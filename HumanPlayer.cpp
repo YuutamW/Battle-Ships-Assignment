@@ -68,8 +68,10 @@ void HumanPlayer::makeMove(Player *opponent)
         std::cout << "Invalid row/column, try again" << std::endl;
         makeMove(opponent);
     }
-    if (opponent->getGrid().getCell(row, col) == 'S')
-    {
-        opponent->findShipInGrid(row, col)->takeHit();
-    }
+    opponent->recievAttack(row,col);
+    std::cout<<playerName<<"'s Grid: "<<std::endl;
+    grid.printGrid();
+    std::cout<<opponent->getPlayerName()<<"'s Grid:"<<std::endl;
+    opponent->getGrid().printGrid();
+    return;
 }
