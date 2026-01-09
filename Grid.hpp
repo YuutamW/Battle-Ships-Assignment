@@ -4,7 +4,6 @@
 #define MAXSHIPSALLOWED 5
 #include "Ship.hpp"
 #include <iostream>
-#include <vector>
 class Grid
 {
 private:
@@ -29,6 +28,4 @@ public:
   char getCell(int row, int col) const ;
 
   void printGrid() const;
-
-
 };
