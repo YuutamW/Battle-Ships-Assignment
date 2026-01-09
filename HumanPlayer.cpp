@@ -52,9 +52,7 @@ void HumanPlayer::placeAllShips()
         else
         {
             getGrid().placeShip(row, col, getShip(i)->getSize(), horizontal);
-            getShip(i)->setRowStart(row);
-            getShip(i)->setColStart(col);
-            getShip(i)->setIsHorizontal(horizontal);
+            getShip(i)->setPos(row,col,horizontal);
         }
         i++;
     }

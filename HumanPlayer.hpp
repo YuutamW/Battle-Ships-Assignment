@@ -12,4 +12,5 @@ public:
 
     void placeAllShips();
     void makeMove(Player *opponent);
+    
 };

@@ -30,6 +30,12 @@ public:
   inline void setRoStart(int r) {this->row_start = r;}
   inline void setColStart(int c) {this->col_start = c;}
   inline void setHor(bool horizon) {this->horizontal = horizon;}
+  inline void setPos(int r, int c , bool h) 
+  {
+    setRoStart(r);
+    setColStart(c);
+    setHor(h);
+  }
   inline bool covers(int r , int c) const {
     if(isHorizontal)
       return ((r == row_start) && (c >= col_start) && (c < col_start + size));

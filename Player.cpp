@@ -56,50 +56,34 @@ Player::~Player()
     }
 }
 
-Ship *Player::findShipInGrid(int row, int col)
+bool Player::recievAttack(int row, int col)
 {
-    for (int i = 0; i < SHIPSAMOUNT; i++)
+    if(!VALIDGRIDINP(row,col)) return false;
+    char cell = grid.getCell(row,col);
+    if(cell == 'S')
     {
-        // If tile is the start tile of the ship - return ship
-        if (row == ships[i]->getRowStart() && col == ships[i]->getColStart())
+        for(int i = 0; i  < SHIPSAMOUNT; i++)
         {
-            return ships[i];
-        }
-
-        // If the tile is diagonal to the ship - continue
-        if (ships[i]->isHorizontal() && row != ships[i]->getRowStart() || !ships[i]->isHorizontal() && col != ships[i]->getColStart())
-        {
-            continue;
-        }
-        if (ships[i]->isHorizontal())
-        {
-            // If tile is farther than the ship size - continue
-            if (std::abs(col - ships[i]->getColStart()) > ships[i]->getSize())
+            if(ships[i]->covers(row,col))
             {
-                continue;
-            }
-            // Check if ship is placed ltr/rtl
-            if (grid.getCell(row, ships[i]->getColStart() + 1) == 'S' || grid.getCell(row, ships[i]->getColStart() + 1) == 'X')
-            {
-                if (col >= ships[i]->getColStart() && col <= ships[i]->getColStart() + ships[i]->getSize())
-                {
-                    return ships[i];
-                }
-            }
-            if (grid.getCell(row, ships[i]->getColStart() - 1) == 'S' || grid.getCell(row, ships[i]->getColStart() + 1) == 'X')
-            {
-                if (col >= ships[i]->getColStart() && col <= ships[i]->getColStart() + ships[i]->getSize())
-                {
-                    return ships[i];
-                }
+                ships[i]->takeHit();
+                if(ships[i]->isSunk())
+                    numOfShipsAlive--;
+                break;
             }
         }
-        else
-        {
-            if (std::abs(row - ships[i]->getRowStart()) > ships[i]->getSize())
-            {
-                continue;
-            }
-        }
+        grid.markHit(row,col);
+        return true;
     }
+    else if(cell == 'X' || cell == 'S')
+    {
+        std::cout<<"Already shot at coordinates: "<<row<<","<<col<<" Missed!"<<std::endl;
+        grid.markMiss(row,col);
+    }
+    else
+    {
+        std::cout<<"Miss! "<<std::endl;
+        grid.markMiss(row,col);
+    }
+    return false;
 }
