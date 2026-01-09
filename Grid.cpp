@@ -34,17 +34,10 @@ bool Grid::inBounds(int row, int col, int shipSize, bool horizontal) const
     }
 }
 
-//PSUEDO FOR THE NEXT STEPS:
-/*
-    int endPoint;
-    if HORIZONTAL
-        then: if c + shipSize is out of bounds
-                endPoint = -shipSize
-            from i =0 to i = endPoint:
-                if cell[r][c+i] == 'S' return false
-                
-
-*/
+void Grid::shipPlacementIndex(int &startPoint, int &endPoint, bool horizontal) const
+{
+    
+}
 void Grid::placeShip(int row, int col, int shipSize, bool horizontal)
 {
     char symbol = 'S';
@@ -57,13 +50,6 @@ void Grid::placeShip(int row, int col, int shipSize, bool horizontal)
         std::cout<< "number of ships Exceeded max amount allowed!"<<std::endl;
         return;
     }
-    if(horizontal) 
-    for(int i = 0; i < shipSize;  i++  )
-    cells[row][col + i] = symbol;
-    else
-    for(int i = 0; i < shipSize;  i++  )
-    cells[row + i][col] = symbol;
-
     numOfShipsOnGrid++;
 }
 
