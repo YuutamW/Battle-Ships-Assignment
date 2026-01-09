@@ -34,9 +34,9 @@ bool Grid::inBounds(int row, int col, int shipSize, bool horizontal) const
     }
 }
 
-void Grid::shipPlacementIndex(int &startPoint, int &endPoint, bool horizontal) const
+void Grid::shipPlacementIndex( int &endPoint, bool horizontal) const
 {
-    
+
 }
 void Grid::placeShip(int row, int col, int shipSize, bool horizontal)
 {

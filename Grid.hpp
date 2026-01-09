@@ -6,11 +6,11 @@
 class Grid
 {
 private:
-  char cells[BOARDSIZE][BOARDSIZE] = {'~'};
+  char cells[BOARDSIZE][BOARDSIZE];
   int numOfShipsOnGrid;
   void shipPlacementIndex(int& startPoint, int& endPoint , bool horizontal) const;
 public:
-  Grid() : numOfShipsOnGrid(0) {}
+  Grid() : numOfShipsOnGrid(0) , cells({'~'}) {}
   ~Grid();
 
   inline bool isTileOccupied(int row, int col) const {return VALIDGRIDINP(row,col)? (cells[row][col] == 'S' || cells[row][col] == 'X'): false ;  }

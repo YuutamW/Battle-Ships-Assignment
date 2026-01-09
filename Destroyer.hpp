@@ -7,5 +7,5 @@ private:
   /* data */
 public:
   Destroyer(string &Name) : Ship(Name, 2) {}
-  ~Destroyer();
+  ~Destroyer() {}
 };
