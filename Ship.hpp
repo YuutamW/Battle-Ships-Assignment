@@ -26,4 +26,7 @@ public:
   inline int getRowStart() {return row_start;}
   inline int getColStart() {return col_start;}
   inline bool isHorizontal() {return horizontal;}
+  inline void setRoStart(int r) {this->row_start = r;}
+  inline void setColStart(int c) {this->col_start = c;}
+  inline void setHor(bool horizon) {this->horizontal = horizon;}
 };
