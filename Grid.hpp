@@ -2,6 +2,7 @@
 #define BOARDSIZE 10
 #define VALIDGRIDINP(row,col) ((row >= 0) && (col >= 0) && (row < BOARDSIZE) && (col <BOARDSIZE))
 #define MAXSHIPSALLOWED 5
+#include "Ship.hpp"
 #include <iostream>
 class Grid
 {
@@ -9,6 +10,7 @@ private:
   char cells[BOARDSIZE][BOARDSIZE];
   int numOfShipsOnGrid;
   void shipPlacementIndex(int row, int col, int &endPoint, bool horizontal , int shipSize) const;
+  
 public:
   Grid() : numOfShipsOnGrid(0) , cells({'~'}) {}
   ~Grid();
@@ -26,5 +28,7 @@ public:
   char getCell(int row, int col) const ;
 
   void printGrid() const;
+
+  Ship findShipInGrid(int row,int col);
 
 };

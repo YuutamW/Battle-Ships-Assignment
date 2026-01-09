@@ -8,7 +8,7 @@ private:
   string name;
   int size;
   int hitsTaken;
-
+  
 public:
   Ship(const string &Name, int shipSize) : name(Name), size(shipSize) ,hitsTaken(0) {}  
   virtual ~Ship() = 0;
