@@ -4,6 +4,6 @@
 class BattleShip : public Ship
 {
 public:
-  BattleShip(string &Name) : Ship(Name, 4) {}
+  BattleShip(const string &Name = "BattleShip") : Ship(Name, 4) {}
   ~BattleShip() {}
 };
