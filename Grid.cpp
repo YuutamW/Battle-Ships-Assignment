@@ -14,31 +14,41 @@ bool Grid::inBounds(int row, int col, int shipSize, bool horizontal) const
         cout<< "Invalid Ship Size "<<endl;
         return false;
     }
-    if(horizontal)
-    for(int i = 0; i < shipSize; i++)
+    if(horizontal) 
     {
-        if(cells[row][col+i] == 'S')
+        if((col + shipSize) > BOARDSIZE && (col - shipSize) < 0)
         {
-            CELL_OCC_MSG(row,col+i);
+            cout<<"Placing ship sized "<<shipSize<<" tiles at ["<<row<<"]["<<col<<"] is Out of Bounds, probably shipSize bigger than grid."<<endl;
             return false;
         }
+        else return true;
     }
     else
-    for(int i = 0; i <shipSize; i++)
     {
-        if(cells[row+i][col] == 'S')
+        if((row + shipSize) > BOARDSIZE && (row - shipSize) < 0)
         {
-            CELL_OCC_MSG(row+i,col);
+            cout<<"Placing ship sized "<<shipSize<<" tiles at ["<<row<<"]["<<col<<"] is Out of Bounds, probably shipSize bigger than grid."<<endl;
             return false;
         }
+        else return true;
     }
-    return true;
 }
 
+//PSUEDO FOR THE NEXT STEPS:
+/*
+    int endPoint;
+    if HORIZONTAL
+        then: if c + shipSize is out of bounds
+                endPoint = -shipSize
+            from i =0 to i = endPoint:
+                if cell[r][c+i] == 'S' return false
+                
+
+*/
 void Grid::placeShip(int row, int col, int shipSize, bool horizontal)
 {
     char symbol = 'S';
-    if(!inBounds) {
+    if(!inBounds(row,col,shipSize,horizontal)) {
         std::cout<< "Ship Placing is not allowed!"<<std::endl;
         return;
     }
@@ -59,13 +69,5 @@ void Grid::placeShip(int row, int col, int shipSize, bool horizontal)
 
 char Grid::getCell(int row, int col) const
 {
-    try
-    {
-        
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    
+   
 }
