@@ -22,6 +22,8 @@ public:
 
     inline void displayGrid() const { grid.printGrid(); }
 
+    Ship *findShipInGrid(int row, int col);
+
     inline string getPlayerName() { return playerName; };
     inline Ship *getShip(int index) { return ships[index]; }
     inline Grid getGrid() { return grid; }
