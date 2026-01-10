@@ -75,7 +75,7 @@ bool Player::recievAttack(int row, int col)
         grid.markHit(row,col);
         return true;
     }
-    else if(cell == 'X' || cell == 'S')
+    else if(cell == 'X' || cell == 'M')
     {
         std::cout<<"Already shot at coordinates: "<<row<<","<<col<<" Missed!"<<std::endl;
         grid.markMiss(row,col);
