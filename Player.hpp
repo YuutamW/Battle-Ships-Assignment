@@ -9,6 +9,7 @@ class Player
 private:
     string playerName;
     Ship *ships[SHIPSAMOUNT];
+
 protected:
     Grid grid;
     int numOfShipsAlive = SHIPSAMOUNT;
@@ -29,5 +30,5 @@ public:
     inline Ship *getShip(int index) { return ships[index]; }
     inline Grid getGrid() { return grid; }
     inline int getnumOfShipsAlive() { return numOfShipsAlive; }
-    bool recievAttack(int row, int col);
+    bool recieveAttack(int row, int col);
 };

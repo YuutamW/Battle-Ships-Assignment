@@ -52,7 +52,7 @@ void HumanPlayer::placeAllShips()
         else
         {
             getGrid().placeShip(row, col, getShip(i)->getSize(), horizontal);
-            getShip(i)->setPos(row,col,horizontal);
+            getShip(i)->setPos(row, col, horizontal);
         }
         i++;
     }
@@ -68,10 +68,10 @@ void HumanPlayer::makeMove(Player *opponent)
         std::cout << "Invalid row/column, try again" << std::endl;
         makeMove(opponent);
     }
-    opponent->recievAttack(row,col);
-    std::cout<<playerName<<"'s Grid: "<<std::endl;
+    opponent->recieveAttack(row, col);
+    std::cout << playerName << "'s Grid: " << std::endl;
     grid.printGrid();
-    std::cout<<opponent->getPlayerName()<<"'s Grid:"<<std::endl;
+    std::cout << opponent->getPlayerName() << "'s Grid:" << std::endl;
     opponent->getGrid().printGrid();
     return;
 }
