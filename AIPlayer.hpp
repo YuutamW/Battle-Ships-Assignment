@@ -6,7 +6,7 @@ class AIPlayer : public Player
 private:
 
 public:
-    AIPlayer(std::string &playerName) : Player(playerName) {}
+    AIPlayer(const std::string &playerName) : Player(playerName) {}
     ~AIPlayer() {}
 
     void placeAllShips();

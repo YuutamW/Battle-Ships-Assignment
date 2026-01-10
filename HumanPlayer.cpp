@@ -8,15 +8,13 @@ void HumanPlayer::placeAllShips()
     int i = 0;
     while (i < SHIPSAMOUNT)
     {
-        std::cout << "Enter tile number for the " << getShip(i)->getName() << ": ex. 1 1" << std::endl;
-        std::cin >> row >> col;
+        std::cout << "Enter tile number for the " << getShip(i)->getName() << ": ex. 0-"<<BOARDSIZE-1<<" 0-"<<BOARDSIZE-1<<" v/h" << std::endl;
+        std::cin >> row >> col >> orientation;
         if (!VALIDGRIDINP(row, col))
         {
             std::cout << "Invalid row/column" << std::endl;
             continue;
         }
-        std::cout << "Enter desired orientation: H for horizontal, V for vertical" << std::endl;
-        std::cin >> orientation;
         switch (orientation)
         {
         case 'H':
@@ -36,7 +34,8 @@ void HumanPlayer::placeAllShips()
             break;
 
         default:
-            break;
+            std::cout << "Invalid orientation!" << std::endl;
+            continue;
         }
 
         if (!getGrid().inBounds(row, col, getShip(i)->getSize(), horizontal))
@@ -51,8 +50,10 @@ void HumanPlayer::placeAllShips()
         }
         else
         {
-            getGrid().placeShip(row, col, getShip(i)->getSize(), horizontal);
-            getShip(i)->setPos(row, col, horizontal);
+
+            if( getGrid().placeShip(row, col, getShip(i)->getSize(), horizontal))
+                getShip(i)->setPos(row, col, horizontal);
+            else continue;
         }
         i++;
     }

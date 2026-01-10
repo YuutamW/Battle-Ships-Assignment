@@ -18,7 +18,7 @@ public:
     Player(const string &name);
     virtual ~Player();
     virtual void placeAllShips() {}
-    virtual void makeMove(Player *opponent) {}
+    virtual void makeMove(Player *) {}
 
     inline bool allShipsSunk() const { return numOfShipsAlive <= 0; }
 

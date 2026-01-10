@@ -14,10 +14,10 @@ private:
 public:
   Ship(const string &Name, int shipSize) : name(Name), size(shipSize), hitsTaken(0) {}
   
-  virtual ~Ship();
+  virtual ~Ship() {}
   virtual void takeHit()
   {
-    std::cout << "<" << name << ">" << " got hit!" << std::endl;
+    std::cout << "\t____<" << name << ">" << "___got hit!___" << std::endl;
     hitsTaken++;
   }
   inline bool isSunk() const { return hitsTaken >= size; }

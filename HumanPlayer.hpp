@@ -6,7 +6,7 @@ class HumanPlayer : public Player
 private:
 
 public:
-    HumanPlayer(std::string &playerName) : Player(playerName) {}
+    HumanPlayer(const std::string &playerName) : Player(playerName) {}
     ~HumanPlayer() {}
 
     void placeAllShips();

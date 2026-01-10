@@ -6,6 +6,7 @@ class Game
 private:
     Player *player1;
     Player *player2;
+    void victory(string winnerName);
 
 public:
     Game(Player *p1, Player *p2);

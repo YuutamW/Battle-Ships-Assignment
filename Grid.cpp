@@ -35,9 +35,9 @@ bool Grid::inBounds(int row, int col, int shipSize, bool horizontal) const
     }
 }
 
-void Grid::shipPlacementIndex(int row, int col, int &endPoint, bool horizontal , int shipSize) const
+bool Grid::shipPlacementIndex(int row, int col, int &endPoint, bool horizontal , int shipSize) const
 {
-    if(!VALIDGRIDINP(row,col)) throw std::out_of_range("Invalid row/columns");
+    if(!VALIDGRIDINP(row,col)) return false;
     int tilesFound = 0;
     if(horizontal)
     {
@@ -56,7 +56,7 @@ void Grid::shipPlacementIndex(int row, int col, int &endPoint, bool horizontal ,
             tilesFound = 0;
             while (c >= 0 && tilesFound < shipSize) //going left if we see 'S' break, if out of bounds throw.
             {
-                if(c < 0) throw std::out_of_range("Ship cannot be placed here out of grid Bounds!!");
+                if(c < 0) {std::cout<<("Ship cannot be placed here out of grid Bounds!!")<<std::endl; return false;}
                 else
                 {
                     if(cells[row][c] == 'S') break;
@@ -84,7 +84,7 @@ void Grid::shipPlacementIndex(int row, int col, int &endPoint, bool horizontal ,
             
             while (r >= 0)
             {
-                if(r < 0) throw std::out_of_range("Ship cannot be placed here out of grid Bounds!!");
+                if(r < 0) {std::cout<<("Ship cannot be placed here out of grid Bounds!!")<<std::endl; return false;}
                 else {
                     if(cells[r][col] == 'S') break;
                     tilesFound++;
@@ -95,20 +95,23 @@ void Grid::shipPlacementIndex(int row, int col, int &endPoint, bool horizontal ,
         }
     }
     //this is where all the breaks lead to, meaning we tried to place between two ships.
-    if(tilesFound < shipSize) throw std::out_of_range("Ship cannot be placed here, overlapping other ships!");
+    if(tilesFound < shipSize) {std::cout<<("Ship cannot be placed here, overlapping other ships!")<<std::endl; return false;}
+    return true;
 
 }
 
-void Grid::placeShip(int row, int col, int shipSize, bool horizontal, char symbol)
+bool Grid::placeShip(int row, int col, int shipSize, bool horizontal, char symbol)
 {
     if(numOfShipsOnGrid >= MAXSHIPSALLOWED)
     {
         std::cout<< "number of ships Exceeded max amount allowed!"<<std::endl;
-        return;
+        return false;
     }
         int endpoint = 0;
+        
         //ship placement index throws an out_of_bounds exception
-        shipPlacementIndex(row,col,endpoint,horizontal,shipSize);
+        if(!shipPlacementIndex(row,col,endpoint,horizontal,shipSize)) return false;
+
         if(horizontal)
         {
             int start  = std::min(col, endpoint);
@@ -124,6 +127,7 @@ void Grid::placeShip(int row, int col, int shipSize, bool horizontal, char symbo
                 cells[r][col] = symbol;
         }
         numOfShipsOnGrid++;
+        return true;
 }
 
 char Grid::getCell(int row, int col) const
@@ -135,6 +139,7 @@ char Grid::getCell(int row, int col) const
 void Grid::printGrid() const
 {
     using namespace std;
+    cout<<"  ";
     for (int i = 0; i < BOARDSIZE; i++)
     {
         cout << i << " ";

@@ -26,8 +26,9 @@ void AIPlayer::placeAllShips()
         }
         else
         {
-            getGrid().placeShip(row, col, getShip(i)->getSize(), horizontal);
-            getShip(i)->setPos(row, col, horizontal);
+            if( getGrid().placeShip(row, col, getShip(i)->getSize(), horizontal))
+                getShip(i)->setPos(row, col, horizontal);
+            else continue;
         }
         i++;
     }
