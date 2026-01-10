@@ -113,14 +113,14 @@ void Grid::placeShip(int row, int col, int shipSize, bool horizontal, char symbo
         {
             int start  = std::min(col, endpoint);
             int end = std::max(col, endpoint);
-            for(int c = start; c <= endpoint; c++)
+            for(int c = start; c <= end; c++)
                 cells[row][c] = symbol;
         }
         else
         {
             int start  = std::min(row, endpoint);
             int end = std::max(row, endpoint);
-            for(int r = start; r <= endpoint; r++)
+            for(int r = start; r <= end; r++)
                 cells[r][col] = symbol;
         }
         numOfShipsOnGrid++;

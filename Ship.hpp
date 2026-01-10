@@ -14,7 +14,7 @@ private:
 public:
   Ship(const string &Name, int shipSize) : name(Name), size(shipSize), hitsTaken(0) {}
   
-  virtual ~Ship() = 0;
+  virtual ~Ship();
   virtual void takeHit()
   {
     std::cout << "<" << name << ">" << " got hit!" << std::endl;
@@ -26,7 +26,7 @@ public:
   inline string getName() { return name; }
   inline int getRowStart() {return row_start;}
   inline int getColStart() {return col_start;}
-  inline bool isHorizontal() {return horizontal;}
+  inline bool isHorizontal() const {return horizontal;}
   inline void setRoStart(int r) {this->row_start = r;}
   inline void setColStart(int c) {this->col_start = c;}
   inline void setHor(bool horizon) {this->horizontal = horizon;}
@@ -37,7 +37,7 @@ public:
     setHor(h);
   }
   inline bool covers(int r , int c) const {
-    if(isHorizontal)
+    if(horizontal)
       return ((r == row_start) && (c >= col_start) && (c < col_start + size));
     else
       return ((c == col_start) && (r>=row_start) && (r < row_start + size));
