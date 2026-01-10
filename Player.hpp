@@ -26,7 +26,7 @@ public:
 
     inline string getPlayerName() { return playerName; };
     inline Ship *getShip(int index) { return ships[index]; }
-    inline Grid getGrid() { return grid; }
+    inline Grid& getGrid() { return grid; }
     inline int getnumOfShipsAlive() { return numOfShipsAlive; }
     bool recieveAttack(int row, int col);
 };

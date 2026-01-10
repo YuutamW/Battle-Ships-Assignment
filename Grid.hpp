@@ -12,8 +12,12 @@ private:
   void shipPlacementIndex(int row, int col, int &endPoint, bool horizontal , int shipSize) const;
   
 public:
-  Grid() : numOfShipsOnGrid(0) , cells({'~'}) {}
-  ~Grid();
+  Grid() : numOfShipsOnGrid(0)  {
+    for(int i = 0; i < BOARDSIZE; i++)
+      for(int j = 0; j < BOARDSIZE; j++)
+        cells[i][j] = '~';
+  }
+  ~Grid() {}
 
   inline bool isTileOccupied(int row, int col) const {return VALIDGRIDINP(row,col)? (cells[row][col] == 'S' || cells[row][col] == 'X'): false ;  }
 

@@ -99,7 +99,7 @@ void Grid::shipPlacementIndex(int row, int col, int &endPoint, bool horizontal ,
 
 }
 
-void Grid::placeShip(int row, int col, int shipSize, bool horizontal, char symbol = 'S')
+void Grid::placeShip(int row, int col, int shipSize, bool horizontal, char symbol)
 {
     if(numOfShipsOnGrid >= MAXSHIPSALLOWED)
     {
