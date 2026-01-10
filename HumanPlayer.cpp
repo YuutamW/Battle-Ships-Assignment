@@ -44,7 +44,7 @@ void HumanPlayer::placeAllShips()
             std::cout << "Ship placement is out of bounds, try again" << std::endl;
             continue;
         }
-        else if (!getGrid().isTileOccupied(row, col))
+        else if (getGrid().isTileOccupied(row, col))
         {
             std::cout << "Tile is already occupied, try again" << std::endl;
             continue;
@@ -69,7 +69,7 @@ void HumanPlayer::makeMove(Player *opponent)
         makeMove(opponent);
     }
     opponent->recieveAttack(row, col);
-    std::cout << playerName << "'s Grid: " << std::endl;
+    std::cout << this->getPlayerName() << "'s Grid: " << std::endl;
     grid.printGrid();
     std::cout << opponent->getPlayerName() << "'s Grid:" << std::endl;
     opponent->getGrid().printGrid();

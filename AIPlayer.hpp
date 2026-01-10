@@ -4,7 +4,6 @@
 class AIPlayer : public Player
 {
 private:
-    std::string playerName;
 
 public:
     AIPlayer(std::string &playerName) : Player(playerName) {}

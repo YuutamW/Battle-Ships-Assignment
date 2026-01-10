@@ -18,28 +18,23 @@ Player::Player(const string &name) : playerName(name)
         switch (i)
         {
         case 0:
-            Carrier *carrier;
-            ships[i] = carrier;
+            ships[i] = new Carrier();
             break;
 
         case 1:
-            BattleShip *battleShip;
-            ships[i] = battleShip;
+            ships[i] = new BattleShip();
             break;
 
         case 2:
-            Cruiser *cruiser;
-            ships[i] = cruiser;
+            ships[i] = new Cruiser();
             break;
 
         case 3:
-            Submarine *submarine;
-            ships[i] = submarine;
+            ships[i] = new Submarine();
             break;
 
         case 4:
-            Destroyer *destroyer;
-            ships[i] = destroyer;
+            ships[i] = new Destroyer();
             break;
 
         default:
@@ -52,7 +47,10 @@ Player::~Player()
 {
     for (int i = 0; i < SHIPSAMOUNT; i++)
     {
-        ships[i] = nullptr;
+        if(ships[i]){
+            delete ships[i];
+            ships[i] = nullptr;
+        }
     }
 }
 
