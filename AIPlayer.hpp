@@ -13,6 +13,6 @@ public:
     void placeAllShips();
     void makeMove(Player *opponent);
 
-    inline int getRandomCoordinate() { return std::rand() % 10; }
+    inline int getRandomCoordinate() { return std::rand() % BOARDSIZE; }
     inline int getRandomOrientation() { return std::rand() % 2; }
 };
