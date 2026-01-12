@@ -6,6 +6,7 @@ void HumanPlayer::placeAllShips()
     char orientation;
     bool horizontal;
     int i = 0;
+    int realStart = 0;
     while (i < SHIPSAMOUNT)
     {
         std::cout << "Enter tile number for the " << getShip(i)->getName() << ": ex. 0-"<<BOARDSIZE-1<<" 0-"<<BOARDSIZE-1<<" v/h" << std::endl;
@@ -51,9 +52,10 @@ void HumanPlayer::placeAllShips()
         else
         {
 
-            if( getGrid().placeShip(row, col, getShip(i)->getSize(), horizontal))
-                getShip(i)->setPos(row, col, horizontal);
-            else continue;
+           if( getGrid().placeShip(row, col, getShip(i)->getSize(), horizontal ,realStart)){
+                if(horizontal) getShip(i)->setPos(row, realStart, horizontal);
+                else getShip(i)->setPos(realStart, col, horizontal);
+            }else continue;
         }
         i++;
     }

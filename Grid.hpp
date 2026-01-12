@@ -23,7 +23,7 @@ public:
 
   bool inBounds(int row , int col, int shipSize, bool horizontal) const;
 
-  bool placeShip(int row, int col, int shipSize, bool horizontal, char symbol = 'S');
+  bool placeShip(int row, int col, int shipSize, bool horizontal, int &actualPos , char symbol = 'S');
 
   inline void markHit(int row, int col) {if(VALIDGRIDINP(row,col)) cells[row][col] = 'X'; }
 
