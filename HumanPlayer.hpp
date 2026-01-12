@@ -4,12 +4,12 @@
 class HumanPlayer : public Player
 {
 private:
-    std::string playerName;
 
 public:
-    HumanPlayer(std::string &playerName) : Player(playerName) {}
+    HumanPlayer(const std::string &playerName) : Player(playerName) {}
     ~HumanPlayer() {}
 
     void placeAllShips();
     void makeMove(Player *opponent);
+    
 };

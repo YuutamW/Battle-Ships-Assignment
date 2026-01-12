@@ -4,8 +4,8 @@
 #include <cstdlib>   // For std::rand(), std::srand()
 #include <ctime>     // For std::time()
 #include "Game.h"
-#include "HumanPlayer.h"
-#include "AiPlayer.h"
+#include "HumanPlayer.hpp"
+#include "AiPlayer.hpp"
 
 int main() {
     // Seed the random number generator for AI placement and moves

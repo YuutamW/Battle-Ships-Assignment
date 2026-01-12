@@ -6,17 +6,16 @@ void HumanPlayer::placeAllShips()
     char orientation;
     bool horizontal;
     int i = 0;
+    int realStart = 0;
     while (i < SHIPSAMOUNT)
     {
-        std::cout << "Enter tile number for the " << getShip(i)->getName() << ": ex. 1 1" << std::endl;
-        std::cin >> row >> col;
+        std::cout << "Enter tile number for the " << getShip(i)->getName() << ": ex. 0-"<<BOARDSIZE-1<<" 0-"<<BOARDSIZE-1<<" v/h" << std::endl;
+        std::cin >> row >> col >> orientation;
         if (!VALIDGRIDINP(row, col))
         {
             std::cout << "Invalid row/column" << std::endl;
             continue;
         }
-        std::cout << "Enter desired orientation: H for horizontal, V for vertical" << std::endl;
-        std::cin >> orientation;
         switch (orientation)
         {
         case 'H':
@@ -36,7 +35,8 @@ void HumanPlayer::placeAllShips()
             break;
 
         default:
-            break;
+            std::cout << "Invalid orientation!" << std::endl;
+            continue;
         }
 
         if (!getGrid().inBounds(row, col, getShip(i)->getSize(), horizontal))
@@ -44,14 +44,18 @@ void HumanPlayer::placeAllShips()
             std::cout << "Ship placement is out of bounds, try again" << std::endl;
             continue;
         }
-        else if (!getGrid().isTileOccupied(row, col))
+        else if (getGrid().isTileOccupied(row, col))
         {
             std::cout << "Tile is already occupied, try again" << std::endl;
             continue;
         }
         else
         {
-            getGrid().placeShip(row, col, getShip(i)->getSize(), horizontal);
+
+           if( getGrid().placeShip(row, col, getShip(i)->getSize(), horizontal ,realStart)){
+                if(horizontal) getShip(i)->setPos(row, realStart, horizontal);
+                else getShip(i)->setPos(realStart, col, horizontal);
+            }else continue;
         }
         i++;
     }
@@ -67,8 +71,10 @@ void HumanPlayer::makeMove(Player *opponent)
         std::cout << "Invalid row/column, try again" << std::endl;
         makeMove(opponent);
     }
-    if (opponent->getGrid().getCell(row, col) == 'S')
-    {
-        opponent->getGrid().findShipInGrid(row, col).takeHit();
-    }
+    opponent->recieveAttack(row, col);
+    std::cout << this->getPlayerName() << "'s Grid: " << std::endl;
+    grid.printGrid();
+    std::cout << opponent->getPlayerName() << "'s Grid:" << std::endl;
+    opponent->getGrid().printGrid();
+    return;
 }
